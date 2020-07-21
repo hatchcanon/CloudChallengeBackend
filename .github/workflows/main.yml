@@ -18,6 +18,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@master
+    - name: GitHub Action for pytest
+      uses: cclauss/GitHub-Action-for-pytest@0.5.0
+      with:
+        args: test_handler.py
     - name: Deploy Python 3.8 code to Lambda
       uses: gwtechnologies/action-lambda-python-zip@1.6
       with:
