@@ -19,14 +19,8 @@ jobs:
         with:
           filename: 'release.zip'
           exclusions: '*.git*  *.md *.txt'
-  
-  deploy:
-    needs: [zip]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
+      - uses: stcalica/update-lambda@master
       - name: deploy to lambda
-        uses: stcalica/update-lambda@master
         with:
           package: release.zip
           function-name: addvisits
