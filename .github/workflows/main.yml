@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: GitHub Action for pytest
-      uses: cclauss/GitHub-Action-for-pytest@0.5.0
+      uses: fylein/python-pytest-github-action@v2
       with:
-        args: "pytest --import-mode=append test_handler.py"      
+        args: pip3 install -r requirements.txt && pytest test_handler.py    
 
   deploy:
     needs: pytest
