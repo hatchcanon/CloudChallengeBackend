@@ -19,8 +19,8 @@ jobs:
         with:
           filename: 'release.zip'
           exclusions: '*.git*  *.md *.txt'
-      - uses: stcalica/update-lambda@master
       - name: deploy to lambda
+        uses: stcalica/update-lambda@master
         with:
           package: release.zip
           function-name: addvisits
