@@ -9,21 +9,25 @@ on:
     branches:
       - master
 jobs:
-  build:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: cclauss/GitHub-Action-for-pytest@0.5.0
+    - name: GitHub Action for pytest
+      run: |
+        pytest test_handler.py
+
+  deploy:
+    needs: pytest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@master
-    - name: GitHub Action for pytest
-      uses: cclauss/GitHub-Action-for-pytest@0.5.0
-      with:
-        args: test_handler.py
-    - name: Deploy Python 3.8 code to Lambda
-      uses: gwtechnologies/action-lambda-python-zip@1.6
+    - name: Deploy Python Code to AWS Lambda
+      uses: ovsen/action-deploy-aws-lambda@1.2
       with:
         lambda_function_name: ${{ secrets.LAMBDA_FUNCTION_NAME }}
         lambda_region: 'na-east-1'
