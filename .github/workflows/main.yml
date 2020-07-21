@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: cclauss/GitHub-Action-for-pytest@0.5.0
     - name: GitHub Action for pytest
-      run: |
-        pytest test_handler.py
+    - uses: cclauss/GitHub-Action-for-pytest@0.5.0
+      with:
+        args: "pytest test_handler.py"      
 
   deploy:
     needs: pytest
