@@ -16,7 +16,7 @@ jobs:
     - name: GitHub Action for pytest
       uses: cclauss/GitHub-Action-for-pytest@0.5.0
       with:
-        args: "pytest --import-mode={append} test_handler.py"      
+        args: "pytest --import-mode=append test_handler.py"      
 
   deploy:
     needs: pytest
