@@ -24,7 +24,7 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: CF-Auto
-          template: template.yaml
+          template: template.yml
   zip:
     needs: cloudformation
     runs-on: ubuntu-latest
